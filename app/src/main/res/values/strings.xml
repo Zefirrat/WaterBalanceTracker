@@ -10,4 +10,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_history">History</string>
     <string name="menu_settings">Settings</string>
+    <string name="_250ml">250ml</string>
+    <string name="_350ml">350ml</string>
+    <string name="_490ml">490ml</string>
+    <string name="_1000ml">1000ml</string>
 </resources>

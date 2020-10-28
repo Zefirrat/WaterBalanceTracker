@@ -27,32 +27,36 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+        android:layout_margin="@dimen/subfabs_margin"
+        app:srcCompat="@android:drawable/ic_btn_speak_now"
+        android:text="@string/_1000ml"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab3"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+        android:layout_margin="@dimen/subfabs_margin"
+        app:srcCompat="@android:drawable/ic_btn_speak_now"
+        android:text="@string/_490ml"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab2"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        android:layout_margin="@dimen/subfabs_margin"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:text="@string/_350ml"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab1"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        android:layout_margin="@dimen/subfabs_margin"
+        app:srcCompat="@android:drawable/ic_dialog_map"
+        android:text="@string/_250ml"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

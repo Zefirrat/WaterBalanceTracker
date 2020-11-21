@@ -23,4 +23,9 @@ class HomeFragment : Fragment() {
         homeViewModel!!.getText()?.observe(viewLifecycleOwner, Observer { s -> textView?.setText(s) })
         return root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        homeViewModel?.OnViewCreated()
+    }
 }

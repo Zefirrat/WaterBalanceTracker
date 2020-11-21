@@ -17,8 +17,12 @@ class HomeViewModel : ViewModel() {
         _subscribeValues()
     }
 
+    public fun OnViewCreated() {
+        _refreshValues()
+    }
+
     private fun _subscribeValues() {
-        SettingsSingleton.getInstance()?.DataBaseController?.onTodayAmountChanged = { s: String, s1: String -> _refreshValues() }
+        SettingsSingleton.getInstance()?.DataBaseController?.RefreshListListeners?.add { _refreshValues() }
         _set_text_home()
     }
 

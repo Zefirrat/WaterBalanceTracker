@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.zefirratstudio.waterbalancetracker.R
-import org.junit.runner.RunWith
 
 class SettingsFragment : Fragment() {
     private var slideshowViewModel: SettingsViewModel? = null
@@ -18,7 +17,11 @@ class SettingsFragment : Fragment() {
         slideshowViewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_settings, container, false)
         val textView = root.findViewById<TextView?>(R.id.text_slideshow)
-        slideshowViewModel.getText().observe(viewLifecycleOwner, Observer { s -> textView.setText(s) })
+        slideshowViewModel!!.getText()?.observe(viewLifecycleOwner, Observer { s ->
+            if (textView != null) {
+                textView.setText(s)
+            }
+        })
         return root
     }
 }

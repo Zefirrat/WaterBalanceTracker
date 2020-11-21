@@ -8,12 +8,13 @@ import kotlin.reflect.KProperty
 
 class DataBaseController(dbHelper: IDataBaseHelper) {
     var TodayAmount: Int by Delegates.observable(0) { _, oldValie, newValue ->
-        //do stuff
+
     }
+
 
     var History: Map<Date, Int> = emptyMap()
 
-    private var _dbHelper: IDataBaseHelper = dbHelper;
+    private var _dbHelper: IDataBaseHelper = dbHelper
 
     fun AddDrinkedWater(amount: Int) {
         _dbHelper.AddDrinkedWater(amount)
@@ -23,6 +24,7 @@ class DataBaseController(dbHelper: IDataBaseHelper) {
     private fun _refreshValues() {
         TodayAmount = _dbHelper.GetTodayAmount()
         History = _dbHelper.GetHistory()
+        onTodayAmountChanged?.invoke(String(), String())
     }
 
     var onTodayAmountChanged: ((String, String) -> Unit)? = null

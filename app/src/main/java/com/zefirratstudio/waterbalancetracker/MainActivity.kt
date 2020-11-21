@@ -16,6 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.zefirratstudio.waterbalancetracker.WellKnownTypes.HoldingCapacityWellKnownType
 import com.zefirratstudio.waterbalancetracker.database.DataBaseController
 import com.zefirratstudio.waterbalancetracker.database.DatabaseHelper
+import com.zefirratstudio.waterbalancetracker.globalsettings.SettingsSingleton
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     private var mAppBarConfiguration: AppBarConfiguration? = null
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var _fab3: FloatingActionButton? = null
     private var _fab4: FloatingActionButton? = null
     private var _isFABOpen = false
-    private var _todayAmountLabel: TextView? = null
+    private lateinit var _todayAmountLabel: TextView
     private var _dbController: DataBaseController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,24 +52,17 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(navigationView, navController)
         _subscribeFABs()
         _loadDatabase()
-        _subscribeValues()
     }
 
-    private fun _subscribeValues() {
-        _dbController?.onTodayAmountChanged = { s: String, s1: String ->_refreshValues()}
 
-        _todayAmountLabel = findViewById<View>(R.id.text_home) as TextView
-        _todayAmountLabel!!.text = _dbController?.TodayAmount.toString()
-    }
 
     private fun _loadDatabase() {
-        val dbHelper = DatabaseHelper(null, null, null, 0)
+        val dbHelper = DatabaseHelper(this)
         _dbController = DataBaseController(dbHelper)
+        SettingsSingleton.getInstance()?.DataBaseController   = _dbController as DataBaseController
     }
 
-    private fun _refreshValues() {
-        _todayAmountLabel!!.text = _dbController?.TodayAmount.toString()
-    }
+
 
     private fun _subscribeFABs() {
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton

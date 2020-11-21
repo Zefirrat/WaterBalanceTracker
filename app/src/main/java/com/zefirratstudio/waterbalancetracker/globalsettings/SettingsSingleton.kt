@@ -1,9 +1,12 @@
 package com.zefirratstudio.waterbalancetracker.globalsettings
 
-import org.junit.runner.RunWith
+import com.zefirratstudio.waterbalancetracker.MainActivity
+import com.zefirratstudio.waterbalancetracker.database.DataBaseController
+
 
 class SettingsSingleton {
     var DailyNorm = 0.0
+    lateinit var DataBaseController: DataBaseController
 
     companion object {
         @Volatile

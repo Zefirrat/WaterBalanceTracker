@@ -38,7 +38,17 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'nl.qbusict:cupboard:2.2.0'
+    compile "com.jskierbi:cupboard-kotlin:0.9.1"
+    // cupboard-kotlin does not include cupboard itself
+    compile "nl.qbusict:cupboard:2.1.4"
+
+    // cupboard-kotlin requires both kotln-stdlib and kotlin-reflect
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    apply plugin: 'com.android.application'
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
 }
 repositories {
     mavenCentral()

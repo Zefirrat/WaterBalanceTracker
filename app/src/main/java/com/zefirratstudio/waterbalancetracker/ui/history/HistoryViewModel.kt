@@ -8,8 +8,10 @@ import com.zefirratstudio.waterbalancetracker.globalsettings.SettingsSingleton
 class HistoryViewModel : ViewModel() {
     private val mList: ArrayList<String> = ArrayList()
     fun getList(): ArrayList<String> {
-        return mList
+        return ArrayList(mList.reversed())
     }
+
+    public var ListChangedCallback : () -> Unit = {}
 
     init {
         _subscribeValues()
@@ -26,14 +28,14 @@ class HistoryViewModel : ViewModel() {
 
     private fun _refreshValues() {
         _set_list()
+        ListChangedCallback()
     }
 
     private fun _set_list() {
-        mList?.clear()
+        mList.clear()
         SettingsSingleton.getInstance()?.DataBaseController?.History?.forEach {
-            mList?.add(it.key.toString() + "\n" + it.value.toString())
+            mList.add(it.key.toString() + "\n" + it.value.toString())
         }
     }
 
-    public lateinit var ListChangedCallback: () -> Unit
 }

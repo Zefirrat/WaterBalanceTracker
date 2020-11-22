@@ -28,16 +28,20 @@ class HistoryFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_history, container, false)
 
         listView = root.findViewById(R.id.history_list_view)
-        listItems = galleryViewModel!!.getList()
+        listItems.addAll(galleryViewModel!!.getList())
+        val arrayAdapter = activity?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, listItems) }
+        listView.adapter = arrayAdapter
         galleryViewModel!!.ListChangedCallback = { listChangedCallback() }
-        val adapter = activity?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, listItems) }
-        listView.adapter = adapter
         return root
     }
 
     private fun listChangedCallback() {
-        val adapter = listView.adapter as ArrayAdapter<String>
-        adapter.notifyDataSetChanged()
+        listItems.clear()
+        listItems.addAll(galleryViewModel!!.getList())
+        val arrayAdapter = listView.adapter as ArrayAdapter<String>
+//        arrayAdapter?.clear()
+//        arrayAdapter?.addAll(listItems)
+        arrayAdapter?.notifyDataSetChanged()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

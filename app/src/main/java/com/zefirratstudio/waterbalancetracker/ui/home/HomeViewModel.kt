@@ -53,6 +53,7 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun _set_text_home() {
-        mText?.setValue(SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount.toString())
+        var str = "${SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount?.div((SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm?.div(100)!!))}%\n${SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount.toString()}/${SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm.toString()}"
+        mText?.setValue(str)
     }
 }

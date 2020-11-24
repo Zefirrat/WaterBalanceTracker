@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:theme="@style/MyMaterialTheme">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -22,48 +23,74 @@
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab4"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/subfabs_margin"
-        app:srcCompat="@android:drawable/ic_btn_speak_now"
-        android:text="@string/_1000ml"/>
+        android:text="@string/_1000ml"
+        app:icon="@drawable/ic_fastfood_24px"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/blue5"
+        app:iconTint="@android:color/white"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab3"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/subfabs_margin"
-        app:srcCompat="@android:drawable/ic_btn_speak_now"
-        android:text="@string/_490ml"/>
+        android:text="@string/_490ml"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/blue5"
+        app:icon="@drawable/ic_local_drink_24px"
+        app:iconTint="@android:color/white"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab2"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/subfabs_margin"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        android:text="@string/_350ml"/>
+        android:text="@string/_350ml"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/blue5"
+        app:icon="@drawable/ic_local_cafe_24px"
+        app:iconTint="@android:color/white"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab1"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/subfabs_margin"
-        app:srcCompat="@android:drawable/ic_dialog_map"
-        android:text="@string/_250ml"/>
+        android:text="@string/_250ml"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/blue5"
+        app:icon="@drawable/ic_local_bar_24px"
+        app:iconTint="@android:color/white"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/add_24px" />
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/blue5"
+        android:text="Add amount"
+        app:icon="@drawable/add_24px"
+        app:iconTint="@android:color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

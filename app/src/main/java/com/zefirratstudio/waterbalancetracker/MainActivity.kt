@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -21,10 +22,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     private var mAppBarConfiguration: AppBarConfiguration? = null
-    private var _fab1: FloatingActionButton? = null
-    private var _fab2: FloatingActionButton? = null
-    private var _fab3: FloatingActionButton? = null
-    private var _fab4: FloatingActionButton? = null
+    private var _fab1: ExtendedFloatingActionButton? = null
+    private var _fab2: ExtendedFloatingActionButton? = null
+    private var _fab3: ExtendedFloatingActionButton? = null
+    private var _fab4: ExtendedFloatingActionButton? = null
     private var _isFABOpen = false
     private lateinit var _todayAmountLabel: TextView
     private var _dbController: DataBaseController? = null
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        val fab = findViewById<ExtendedFloatingActionButton>(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -65,11 +66,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun _subscribeFABs() {
-        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
-        _fab1 = findViewById<View>(R.id.fab1) as FloatingActionButton
-        _fab2 = findViewById<View>(R.id.fab2) as FloatingActionButton
-        _fab3 = findViewById<View>(R.id.fab3) as FloatingActionButton
-        _fab4 = findViewById<View>(R.id.fab4) as FloatingActionButton
+        val fab = findViewById<View>(R.id.fab) as ExtendedFloatingActionButton
+        _fab1 = findViewById<View>(R.id.fab1) as ExtendedFloatingActionButton
+        _fab2 = findViewById<View>(R.id.fab2) as ExtendedFloatingActionButton
+        _fab3 = findViewById<View>(R.id.fab3) as ExtendedFloatingActionButton
+        _fab4 = findViewById<View>(R.id.fab4) as ExtendedFloatingActionButton
         fab.setOnClickListener {
             if (!_isFABOpen) {
                 _showFABMenu()

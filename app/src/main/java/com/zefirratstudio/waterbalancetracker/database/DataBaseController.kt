@@ -2,6 +2,7 @@ package com.zefirratstudio.waterbalancetracker.database
 
 import android.database.Observable
 import com.zefirratstudio.waterbalancetracker.R
+import com.zefirratstudio.waterbalancetracker.database.models.DailyNorm
 import java.util.*
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
@@ -20,6 +21,7 @@ class DataBaseController(dbHelper: IDataBaseHelper) {
             it()
         }
     }
+    var DailyNorm: Int by Delegates.observable(0) { _, oldValue, newValue -> RefreshListListeners.forEach { it() } }
 
     private var _dbHelper: IDataBaseHelper = dbHelper
 
@@ -32,8 +34,13 @@ class DataBaseController(dbHelper: IDataBaseHelper) {
         _refreshValues()
     }
 
+    fun SetDailyNorm(amount: Int) {
+        _dbHelper.SetDailyNorm(amount)
+    }
+
     private fun _refreshValues() {
         TodayAmount = _dbHelper.GetTodayAmount()
         History = _dbHelper.GetHistory()
+        DailyNorm = _dbHelper.GetDailyNorm()
     }
 }

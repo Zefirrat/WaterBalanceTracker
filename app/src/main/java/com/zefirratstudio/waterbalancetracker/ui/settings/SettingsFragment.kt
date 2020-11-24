@@ -1,6 +1,8 @@
 package com.zefirratstudio.waterbalancetracker.ui.settings
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +18,16 @@ class SettingsFragment : Fragment() {
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         slideshowViewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_settings, container, false)
-        val textView = root.findViewById<TextView?>(R.id.text_slideshow)
-        slideshowViewModel!!.getText()?.observe(viewLifecycleOwner, Observer { s ->
-            if (textView != null) {
-                textView.setText(s)
+        val textEdit = root.findViewById<TextView?>(R.id.editTextNumber)
+        textEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                slideshowViewModel!!.ChangeDailyNorm(s.toString().toInt())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
         return root

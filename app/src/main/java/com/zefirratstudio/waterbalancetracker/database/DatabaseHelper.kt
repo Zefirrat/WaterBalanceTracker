@@ -8,19 +8,21 @@ import androidx.annotation.RequiresApi
 import com.jskierbi.cupboard.configureCupboard
 import com.jskierbi.cupboard.query
 import com.jskierbi.cupboard.register
+import com.zefirratstudio.waterbalancetracker.database.models.DailyNorm
 import com.zefirratstudio.waterbalancetracker.database.models.DrinkedWater
 import nl.qbusict.cupboard.CupboardFactory.cupboard
 import java.util.*
 
 
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "WaterBalanceTracker.db", null, 2), IDataBaseHelper {
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "WaterBalanceTracker.db", null, 3), IDataBaseHelper {
 
     private val DATABASE_NAME = "WaterBalanceTracker.db"
-    private val DATABASE_VERSION = 2
+    private val DATABASE_VERSION = 3
 
     init {
         configureCupboard {
             register<DrinkedWater>()
+            register<DailyNorm>()
         }
     }
 
@@ -63,5 +65,18 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "WaterBalance
     override fun AddDrinkedWater(amount: Int) {
         val drinkedWater = DrinkedWater(amount, Date())
         cupboard().withDatabase(writableDatabase).put(drinkedWater)
+    }
+
+    override fun GetDailyNorm(): Int {
+        val list = cupboard().withDatabase(readableDatabase).query<DailyNorm>().list()
+        var amount = 0
+        if (list!=null && list.count()>0)
+            amount = list.last().Amount
+        return amount
+    }
+
+    override fun SetDailyNorm(amount: Int) {
+        val dailyNorm = DailyNorm(amount)
+        cupboard().withDatabase(writableDatabase).put(dailyNorm)
     }
 }

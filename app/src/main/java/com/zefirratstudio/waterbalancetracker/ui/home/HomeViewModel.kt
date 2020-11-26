@@ -42,18 +42,30 @@ class HomeViewModel : ViewModel() {
         if (DailyAmountView != null) {
             val todayAmount = SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount
             val dailyAmount = SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm
+            var divide = dailyAmount?.div(100)
+            if (divide != null) {
+                if (divide < 1)
+                    divide = 1
+            }
             if (todayAmount != null) {
 //                DailyAmountView!!.layoutParams = ConstraintLayout.LayoutParams(DailyAmountView!!.width.toInt(), (DisplayHeight * 0.75 * (todayAmount / dailyAmount!!)).toInt())
 //                DailyAmountView!!.layoutParams.
-                DailyAmountView!!.layoutParams.height = (DisplayHeight * 0.75 * (todayAmount / dailyAmount!!)).toInt()
+                DailyAmountView!!.layoutParams.height = ((DisplayHeight * 0.75 / 100) * (todayAmount / divide!!)).toInt()
 
                 DailyAmountView!!.invalidate()
+                DailyAmountView!!.requestLayout()
             }
         }
     }
 
     private fun _set_text_home() {
-        var str = "${SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount?.div((SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm?.div(100)!!))}%\n${SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount.toString()}/${SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm.toString()}"
-        mText?.setValue(str)
+        var divide = SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm?.div(100)
+        if (divide != null) {
+            if (divide < 1)
+                divide = 1
+        }
+
+        var str = "${divide?.let { SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount?.div(it) }}%\n${SettingsSingleton.getInstance()?.DataBaseController?.TodayAmount.toString()}/${SettingsSingleton.getInstance()?.DataBaseController?.DailyNorm.toString()}"
+        mText?.value = str
     }
 }

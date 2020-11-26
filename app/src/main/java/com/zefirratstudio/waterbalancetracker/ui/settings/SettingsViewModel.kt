@@ -9,6 +9,7 @@ class SettingsViewModel : ViewModel() {
 
     public fun ChangeDailyNorm(amount: Int) {
         SettingsSingleton.getInstance()?.DataBaseController?.SetDailyNorm(amount)
+        SettingsSingleton.getInstance()?.DataBaseController?.RefreshValues()
     }
 
 

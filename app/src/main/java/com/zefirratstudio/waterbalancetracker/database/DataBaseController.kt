@@ -21,7 +21,7 @@ class DataBaseController(dbHelper: IDataBaseHelper) {
             it()
         }
     }
-    var DailyNorm: Int by Delegates.observable(0) { _, oldValue, newValue -> RefreshListListeners.forEach { it() } }
+    var DailyNorm: Int by Delegates.observable(1) { _, oldValue, newValue -> RefreshListListeners.forEach { it() } }
 
     private var _dbHelper: IDataBaseHelper = dbHelper
 
@@ -38,9 +38,16 @@ class DataBaseController(dbHelper: IDataBaseHelper) {
         _dbHelper.SetDailyNorm(amount)
     }
 
+    public fun RefreshValues() {
+        _refreshValues()
+    }
+
     private fun _refreshValues() {
         TodayAmount = _dbHelper.GetTodayAmount()
         History = _dbHelper.GetHistory()
-        DailyNorm = _dbHelper.GetDailyNorm()
+        var dn = _dbHelper.GetDailyNorm()
+        if (dn < 1)
+            dn = 1
+        DailyNorm = dn
     }
 }
